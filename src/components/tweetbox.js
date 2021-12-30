@@ -35,6 +35,7 @@ const Tweetbox = () => {
         tweet: tweetmsg,
         imgUrl: img,
         verified: true,
+        Avatar: userinfo.photoURL,
       })
     }
     settweet('')
