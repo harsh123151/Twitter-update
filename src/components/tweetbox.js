@@ -13,7 +13,6 @@ const Tweetbox = () => {
   const [imgurl, setimgurl] = useState(false)
   const [img, setimg] = useState('')
   useEffect(() => {
-    console.log('in tweetbox')
     onAuthStateChanged(auth, (user) => {
       if (user) {
       } else {

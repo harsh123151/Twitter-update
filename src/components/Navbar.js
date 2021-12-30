@@ -7,7 +7,6 @@ import { auth } from '../firebase'
 const Aside = () => {
   const { navdata, index, setindex, setUser } = useGlobalContext()
   useEffect(() => {
-    console.log('in navbar')
     onAuthStateChanged(auth, (user) => {
       if (user) {
       } else {
