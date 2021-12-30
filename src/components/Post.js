@@ -7,9 +7,7 @@ import PublishIcon from '@material-ui/icons/Publish'
 import { useGlobalContext } from '../context'
 
 const Post = ({ post }) => {
-  console.log(post)
   const { displayName, userName, verified, tweet, imgUrl } = post
-  const { userinfo } = useGlobalContext()
   return (
     <div className='post'>
       <div className='post_avatar'>

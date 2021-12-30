@@ -36,6 +36,7 @@ const Tweetbox = () => {
         imgUrl: img,
         verified: true,
         Avatar: userinfo.photoURL,
+        Phone: userinfo.phoneNumber,
       })
     }
     settweet('')
