@@ -34,9 +34,8 @@ const Tweetbox = () => {
         userName: userinfo.displayName.toLowerCase().replace(/ +/g, ''),
         tweet: tweetmsg,
         imgUrl: img,
-        verified: true,
+        verified: userinfo.emailVerified,
         Avatar: userinfo.photoURL,
-        Phone: userinfo.phoneNumber,
       })
     }
     settweet('')
