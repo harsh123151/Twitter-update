@@ -8,6 +8,7 @@ const Context = ({ children }) => {
   const [index, setindex] = useState(1)
   const [user, setUser] = useState(false)
   const [userinfo, setuserinfo] = useState({})
+  const [comment, setcomment] = useState(false)
 
   return (
     <AppContext.Provider
@@ -21,6 +22,8 @@ const Context = ({ children }) => {
         setUser,
         userinfo,
         setuserinfo,
+        comment,
+        setcomment,
       }}
     >
       {children}

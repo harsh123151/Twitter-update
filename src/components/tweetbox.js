@@ -7,11 +7,13 @@ import { addDoc, collection } from 'firebase/firestore'
 import { useGlobalContext } from '../context'
 import { onAuthStateChanged, signOut } from 'firebase/auth'
 import { auth } from '../firebase'
+import { serverTimestamp } from 'firebase/firestore'
 const Tweetbox = () => {
   const { userinfo, setUser } = useGlobalContext()
   const [tweetmsg, settweet] = useState('')
   const [imgurl, setimgurl] = useState(false)
   const [img, setimg] = useState('')
+
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -36,6 +38,7 @@ const Tweetbox = () => {
         imgUrl: img,
         verified: userinfo.emailVerified,
         Avatar: userinfo.photoURL,
+        created: serverTimestamp(),
       })
     }
     settweet('')

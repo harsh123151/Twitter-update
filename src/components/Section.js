@@ -3,11 +3,15 @@ import { GiNorthStarShuriken } from 'react-icons/gi'
 import Tweetbox from './tweetbox'
 import Post from './Post'
 import db from '../firebase.js'
-import { collection, onSnapshot } from 'firebase/firestore'
+import { collection, onSnapshot, query, orderBy } from 'firebase/firestore'
+
+import { useGlobalContext } from '../context'
 const Section = () => {
   const [posts, setposts] = useState([])
+
+  const q = query(collection(db, 'posts'), orderBy('created', 'desc'))
   const getPosts = () => {
-    onSnapshot(collection(db, 'posts'), (documents) => {
+    onSnapshot(q, (documents) => {
       setposts(
         documents.docs.map((doc) => {
           return doc.data()
@@ -17,7 +21,11 @@ const Section = () => {
   }
   useEffect(() => {
     getPosts()
+    return () => {
+      getPosts()
+    }
   }, [])
+
   return (
     <div className='feed'>
       <section className='section'>
@@ -26,6 +34,7 @@ const Section = () => {
           <GiNorthStarShuriken className='staricon' />
         </div>
         <Tweetbox />
+
         {posts.map((post, index) => {
           return <Post post={post} key={index} />
         })}

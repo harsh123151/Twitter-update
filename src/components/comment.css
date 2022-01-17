@@ -1,0 +1,65 @@
+html {
+  width: 100vw;
+  height: 100vh;
+  overflow-y: hidden;
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  padding: 0;
+}
+
+.comment {
+  width: 40vw;
+  height: 50vh;
+  position: absolute;
+  background-color: black;
+  z-index: 1000;
+  top: 20px;
+  left: 300px;
+  border-radius: 10px;
+}
+
+.cancelbutton {
+  position: absolute;
+  color: rgb(29, 155, 240);
+  width: 30px;
+  height: 30px;
+  top: 15px;
+  right: 20px;
+  cursor: pointer;
+}
+
+.comment-box {
+  position: absolute;
+  bottom: 10px;
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+}
+.comment-text {
+  width: 70%;
+}
+.comment-text-input {
+  background-color: black;
+  color: white;
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 19px;
+}
+.post-btn {
+  color: rgb(29, 155, 240);
+  border-radius: 16px;
+  width: 40px;
+  height: 30px;
+  cursor: pointer;
+  font-size: 19px;
+}

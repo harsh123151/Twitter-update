@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import Avatar from '@mui/material/Avatar'
 import VerifiedIcon from '@mui/icons-material/Verified'
 import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline'
@@ -7,7 +8,12 @@ import PublishIcon from '@material-ui/icons/Publish'
 import { useGlobalContext } from '../context'
 
 const Post = ({ post }) => {
+  console.log(post)
   const { displayName, userName, verified, tweet, imgUrl } = post
+  const { setcomment } = useGlobalContext()
+  const commenton = () => {
+    setcomment(true)
+  }
   return (
     <div className='post'>
       <div className='post_avatar'>
@@ -27,7 +33,11 @@ const Post = ({ post }) => {
         <div className='post_header_text'>{tweet}</div>
         {imgUrl && <img src={imgUrl} className='post_header_img' />}
         <div className='post_header_btn'>
-          <ChatBubbleOutlineIcon className='action_btn' fontSize='small' />
+          <ChatBubbleOutlineIcon
+            className='action_btn'
+            fontSize='small'
+            onClick={commenton}
+          />
           <RepeatIcon className='action_btn' fontSize='small' />
           <FavoriteBorderIcon className='action_btn like' fontSize='small' />
           <PublishIcon className='action_btn' fontSize='small' />
