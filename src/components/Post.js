@@ -33,11 +33,7 @@ const Post = ({ post }) => {
         <div className='post_header_text'>{tweet}</div>
         {imgUrl && <img src={imgUrl} className='post_header_img' />}
         <div className='post_header_btn'>
-          <ChatBubbleOutlineIcon
-            className='action_btn'
-            fontSize='small'
-            onClick={commenton}
-          />
+          <ChatBubbleOutlineIcon className='action_btn' fontSize='small' />
           <RepeatIcon className='action_btn' fontSize='small' />
           <FavoriteBorderIcon className='action_btn like' fontSize='small' />
           <PublishIcon className='action_btn' fontSize='small' />
