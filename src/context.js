@@ -9,7 +9,8 @@ const Context = ({ children }) => {
   const [user, setUser] = useState(false)
   const [userinfo, setuserinfo] = useState({})
   const [comment, setcomment] = useState(false)
-
+  const [commentId, setcommentId] = useState('')
+  const [postComment, setPostComment] = useState({})
   return (
     <AppContext.Provider
       value={{
@@ -24,6 +25,10 @@ const Context = ({ children }) => {
         setuserinfo,
         comment,
         setcomment,
+        commentId,
+        setcommentId,
+        postComment,
+        setPostComment,
       }}
     >
       {children}

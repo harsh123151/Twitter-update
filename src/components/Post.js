@@ -1,19 +1,30 @@
-import { useState } from 'react'
 import Avatar from '@mui/material/Avatar'
 import VerifiedIcon from '@mui/icons-material/Verified'
 import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline'
 import RepeatIcon from '@material-ui/icons/Repeat'
-import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder'
+
 import PublishIcon from '@material-ui/icons/Publish'
 import { useGlobalContext } from '../context'
-
+import Like from './like'
 const Post = ({ post }) => {
-  console.log(post)
-  const { displayName, userName, verified, tweet, imgUrl } = post
-  const { setcomment } = useGlobalContext()
-  const commenton = () => {
+  const {
+    displayName,
+    userName,
+    verified,
+    tweet,
+    imgUrl,
+    id,
+    comments,
+    likes,
+  } = post
+
+  const { setcomment, setcommentId, userinfo } = useGlobalContext()
+
+  const commenton = (id) => {
     setcomment(true)
+    setcommentId(id)
   }
+
   return (
     <div className='post'>
       <div className='post_avatar'>
@@ -32,10 +43,28 @@ const Post = ({ post }) => {
         </div>
         <div className='post_header_text'>{tweet}</div>
         {imgUrl && <img src={imgUrl} className='post_header_img' />}
+
         <div className='post_header_btn'>
-          <ChatBubbleOutlineIcon className='action_btn' fontSize='small' />
+          <div
+            className='commentcount'
+            style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              width: '38px',
+            }}
+          >
+            <ChatBubbleOutlineIcon
+              className='action_btn'
+              fontSize='small'
+              onClick={() => {
+                commenton(id)
+              }}
+            />
+            <span>{comments ? comments.length : ''}</span>
+          </div>
           <RepeatIcon className='action_btn' fontSize='small' />
-          <FavoriteBorderIcon className='action_btn like' fontSize='small' />
+          <Like props={{ id: id, likes: likes }} />
           <PublishIcon className='action_btn' fontSize='small' />
         </div>
       </div>

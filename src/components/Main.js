@@ -4,18 +4,17 @@ import Aside from './Navbar'
 import Section from './Section'
 import Widget from './Widget'
 import { useGlobalContext } from '../context'
-import Comments from './Comments'
 const Main = () => {
-  const { user, comment } = useGlobalContext()
+  const { user } = useGlobalContext()
   const navigate = useNavigate()
   useEffect(() => {
     if (!user) {
       navigate('/')
     }
+    return () => {}
   }, [user])
   return (
     <main className='main'>
-      {comment && <Comments />}
       <Aside />
       <Section />
       <Widget />

@@ -275,7 +275,7 @@ body {
   cursor: pointer;
 }
 
-.like:hover {
+.like {
   color: red;
   box-shadow: 1px 1px 15px red;
 }

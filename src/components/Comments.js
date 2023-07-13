@@ -3,15 +3,38 @@ import { MdOutlineCancel } from 'react-icons/md'
 import './comment.css'
 import { useGlobalContext } from '../context'
 import Avatar from '@mui/material/Avatar'
+import db from '../firebase'
+import { updateDoc, doc, arrayUnion } from 'firebase/firestore'
+import RenderComment from './RenderComment'
 const Comments = () => {
-  const { setcomment, userinfo } = useGlobalContext()
+  const { setcomment, userinfo, setcommentId, commentId } = useGlobalContext()
   const [addcomment, setaddcomment] = useState('')
+  const postComment = async () => {
+    const docref = doc(db, 'posts', commentId)
+    await updateDoc(docref, {
+      comments: arrayUnion(addcomment),
+    })
+  }
+  const handleSubmit = async () => {
+    if (addcomment === '') {
+      console.log('provide some comment for post ' + commentId)
+    } else if (addcomment.length < 10) {
+      console.log('comment length should be greater than 10')
+    } else {
+      postComment()
+      setaddcomment('')
+    }
+  }
   return (
     <div className='comment'>
-      <div>
+      <div class='cancel'>
         <MdOutlineCancel
           className='cancelbutton'
-          onClick={() => setcomment(false)}
+          onClick={() => {
+            setcomment(false)
+            setcommentId('')
+            setaddcomment('')
+          }}
         />
       </div>
       <div className='comment-box'>
@@ -32,7 +55,17 @@ const Comments = () => {
             }}
           ></textarea>
         </div>
-        <div className='post-btn'>post</div>
+        <div
+          className='post-btn'
+          onClick={() => {
+            handleSubmit()
+          }}
+        >
+          post
+        </div>
+      </div>
+      <div class='allcomment'>
+        <RenderComment />
       </div>
     </div>
   )

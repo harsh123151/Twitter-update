@@ -19,7 +19,7 @@ const Aside = () => {
       <TwitterLogo>
         <IoLogoTwitter className='logo' />
       </TwitterLogo>
-      {navdata.map((data, i) => {
+      {navdata.map((data) => {
         const { id, text, icon } = data
         return (
           <NavbarButton

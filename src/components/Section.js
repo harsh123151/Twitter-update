@@ -4,9 +4,11 @@ import Tweetbox from './tweetbox'
 import Post from './Post'
 import db from '../firebase.js'
 import { collection, onSnapshot, query, orderBy } from 'firebase/firestore'
+import Comments from './Comments'
 
 import { useGlobalContext } from '../context'
 const Section = () => {
+  const { comment, setPostComment, commentId } = useGlobalContext()
   const [posts, setposts] = useState([])
 
   const q = query(collection(db, 'posts'), orderBy('created', 'desc'))
@@ -14,7 +16,7 @@ const Section = () => {
     onSnapshot(q, (documents) => {
       setposts(
         documents.docs.map((doc) => {
-          return doc.data()
+          return { ...doc.data(), id: doc.id }
         })
       )
     })
@@ -26,8 +28,17 @@ const Section = () => {
     }
   }, [])
 
+  useEffect(() => {
+    setPostComment(
+      posts.filter((post) => {
+        return post.id == commentId
+      })
+    )
+  }, [posts, commentId])
+
   return (
     <div className='feed'>
+      {comment && <Comments />}
       <section className='section'>
         <div className='homenav'>
           <h2>Home</h2>

@@ -39,6 +39,8 @@ const Tweetbox = () => {
         verified: userinfo.emailVerified,
         Avatar: userinfo.photoURL,
         created: serverTimestamp(),
+        comments: [],
+        likes: [],
       })
     }
     settweet('')
