@@ -7,8 +7,13 @@ const RenderComment = () => {
   return (
     <ul>
       {postComment[0] && postComment[0].comments
-        ? postComment[0].comments.map((comment, index) => {
-            return <li key={index}>{comment}</li>
+        ? postComment[0].comments.map(({ name, comment }, index) => {
+            return (
+              <li key={index}>
+                <span style={{ marginRight: '22px' }}>{name}</span>
+                {comment}
+              </li>
+            )
           })
         : ''}
     </ul>

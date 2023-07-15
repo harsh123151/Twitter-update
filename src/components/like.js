@@ -20,7 +20,6 @@ const Like = ({ props }) => {
         likes: arrayUnion(userinfo.uid),
       })
     }
-    console.log(id, userinfo.uid)
   }
   return (
     <div

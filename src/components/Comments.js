@@ -10,9 +10,9 @@ const Comments = () => {
   const { setcomment, userinfo, setcommentId, commentId } = useGlobalContext()
   const [addcomment, setaddcomment] = useState('')
   const postComment = async () => {
-    const docref = doc(db, 'posts', commentId)
-    await updateDoc(docref, {
-      comments: arrayUnion(addcomment),
+    const docRef = doc(db, 'posts', commentId)
+    await updateDoc(docRef, {
+      comments: arrayUnion({ comment: addcomment, name: userinfo.displayName }),
     })
   }
   const handleSubmit = async () => {

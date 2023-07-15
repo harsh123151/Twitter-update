@@ -15,3 +15,4 @@ const app = initializeApp(firebaseConfig)
 const db = getFirestore()
 export const auth = getAuth()
 export default db
+//imp file
